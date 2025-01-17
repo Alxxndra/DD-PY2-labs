@@ -2,96 +2,95 @@
 from typing import Union
 import doctest
 
-
-class Bottle:
+class Pool:
     def __init__(self, capacity_volume: Union[int, float], occupied_volume: Union[int, float]):
         """
-        Создание и подготовка к работе объекта Бутылка
-        :param capacity_volume: Объем бутылки
+        Создание и подготовка к работе объекта Бассейн
+        :param capacity_volume: Объем бассейна
         :param occupied_volume: Объем занимаемой жидкости
         Примеры:
-        >>> bottle = Bottle(500, 0)  # инициализация экземпляра класса
+        >>> pool = Pool(2000, 0)  # инициализация экземпляра класса
         """
         if not isinstance(capacity_volume, (int, float)):
             raise TypeError("Объем должен быть типа int или float")
         if capacity_volume <= 0:
             raise ValueError("Объем должен быть положительным числом")
-        self.capacity_volume = capacity_volume  # объем бутылки
+        self.capacity_volume = capacity_volume  # объем бассейна
         if not isinstance(occupied_volume, (int, float)):
             raise TypeError("Количество жидкости должно быть int или float")
         if occupied_volume < 0:
             raise ValueError("Количество жидкости не может быть отрицательным числом")
-        self.occupied_volume = occupied_volume  # занятый объем бутылки
+        self.occupied_volume = occupied_volume  # занятый объем бассейна
 
-    def is_full_bottle(self) -> bool:
+    def is_full_pool(self) -> bool:
         """
-        Функция которая проверяет является ли бутылка полной
+        Функция которая проверяет является ли бассейн полным
 
-        :return: Является ли бутылка полной
+        :return: Является ли бассейн полным
 
         Примеры:
-        >>> bottle = Bottle(500, 0)
-        >>> bottle.is_full_bottle()
+        >>> pool = Pool(2000, 0)
+        >>> pool.is_full_pool()
         """
-    def add_water_to_bottle(self, water: float) -> None:
+    def add_aqua_to_pool(self, aqua: float) -> None:
         """
-        Добавление воды в бутылку.
-        :param water: Объем добавляемой жидкости
+        Добавление воды в бассейн
+        :param aqua: Объем добавляемой воды
 
-        :raise ValueError: Если количество добавляемой жидкости превышает свободное место в бутылке, то вызываем ошибку
+        :raise ValueError: Если количество добавляемой воды превышает свободное место в бассейне, то вызываем ошибку
 
         Примеры:
-        >>> bottle = Bottle(500, 0)
-        >>> bottle.add_water_to_bottle(200)
+        >>> pool = Pool(2000, 0)
+        >>> pool.add_aqua_to_pool(500)
         """
-        if not isinstance(water, (int, float)):
-            raise TypeError("Добавляемая жидкость должна быть типа int или float")
-        if water < 0:
-            raise ValueError("Добавляемая жидкость должна быть положительным числом")
+        if not isinstance(aqua, (int, float)):
+            raise TypeError("Добавляемый объем воды должен быть типа int или float")
+        if aqua < 0:
+            raise ValueError("Добавляемый ообъем воды должен быть положительным числом")
 
 
-class Cat:
-    def __init__(self, name: str):
+class Pencil:
+    def __init__(self, color: str):
         """
-        Создание и подготовка к работе объекта Собака
-        :param name: Имя кошки
-        :param tricks: список трюков, которым обучена кошка
+        Создание и подготовка к работе объекта Карандаш
+        :param color: Цвет карандаша
+        :param hardness: варианты твердости карандаша
         Примеры:
-        >>> cat = Cat('Пушок')  # инициализация экземпляра класса
+        >>> pencil = Pencil('Серый')  # инициализация экземпляра класса
         """
-        self.name = name
-        self.tricks = []    # создание пустого списка для каждой собаки
+        self.color = color
+        self.hardness = []    # создание пустого списка для карандаша
 
-    def add_trick(self, trick: str) -> None:
+    def add_hardness(self, hardness: str) -> None:
         """
-        Добавление трюков для кошки.
-        :param trick: название трюка
+        Добавление твердости карандаша
+        :param hardness: твердость карандаша
         Примеры:
-        >>> cat = Cat('Пушок')
-        >>> cat.add_trick('Голос')
+        >>> pencil = Pencil('Серый')
+        >>> pencil.add_hardness('НВ')
         """
 
-    def check_trick(self, trick: str) -> bool:
+    def check_hardness(self, hardness: str) -> bool:
         """
-        Функция которая проверяет обучена ли кошка трюку
+        Функция, которая проверяет, есть ли карандаш нужной твердости
 
-        :return: Знает ли кошка трюк
+        :return: Есть ли карандаш нужной твердости
 
         Примеры:
-        >>> cat = Cat('Пушок')
-        >>> cat.check_trick('Перевернись')
+        >>> pencil = Pencil('Серый')
+        >>> pencil.check_hardness('3В')
         """
 
 
-class Box:
+class Storage:
     def __init__(self, products: str, capacity_volume: Union[int, float], occupied_volume: Union[int, float]):
         """
-        Создание и подготовка к работе объекта Ящик
-        :param products: вид продукции в ящике
-        :param capacity_volume: вместимость ящика
-        :param occupied_volume: количество продукции в ящике
+        Создание и подготовка к работе объекта Склад
+        :param products: вид продукции на складе
+        :param capacity_volume: вместимость склада
+        :param occupied_volume: количество продукции на складе
         Примеры:
-        >>> box = Box('яблоки',500, 0)  # инициализация экземпляра класса
+        >>> storage = Storage('кирпичи',10000, 0)  # инициализация экземпляра класса
         """
         self.products = products    # вид продукции на складе
         if not isinstance(capacity_volume, (int, float)):
@@ -103,29 +102,28 @@ class Box:
             raise TypeError("Количество продукции на складе должно быть int или float")
         if occupied_volume < 0:
             raise ValueError("Количество продукции на складе не может быть отрицательным числом")
-        self.occupied_volume = occupied_volume  # количество продукции в ящике
+        self.occupied_volume = occupied_volume  # количество продукции на складе
 
-    def is_empty_box(self) -> bool:
+    def is_empty_storage(self) -> bool:
         """
-        Функция которая проверяет является ли ящик свободным
+        Функция которая проверяет является ли склад пустым
 
-        :return: Является ли ящик свободным
+        :return: Является ли склад пустым
 
         Примеры:
-        >>> box = Box('яблоки',500, 0)
-        >>> box.is_empty_box()
+        >>> storage = Storage('кирпичи',10000, 0)
+        >>> storage.is_empty_storage()
         """
-    def add_products_to_box(self, new_product: str, volume: Union[int, float]) -> None:
+    def add_products_to_storage(self, new_product: str, volume: Union[int, float]) -> None:
         """
-        Заполнение ящика.
+        Заполнение склада.
         :param new_product: тип продукции
 
-        :raise ValueError: Если количество добавляемой продукции превышает свободное место в ящике, то вызываем ошибку
-        :raise TypeError: Если новая продукция не совпадает с находящейся в ящике
+        :raise ValueError: Если количество добавляемой продукции превышает свободное место на складе, то вызываем ошибку
 
         Примеры:
-        >>> box = Box('яблоки',500, 0)
-        >>> box.add_products_to_box('яблоки', 200)
+        >>> storage = Storage('кирпичи',10000, 0)
+        >>> storage.add_products_to_storage('кирпичи', 2000)
         """
         if not isinstance(volume, (int, float)):
             raise TypeError("Количество добавляемой продукции должно быть типа int или float")
